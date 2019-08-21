@@ -1,0 +1,40 @@
+
+<div class="searchContainer">
+  <br> <br><br><br>
+
+  <!-- header div -->
+  <div class="col-12 m-auto pt-5 mt-5">
+    <h1 class="text-center mt-5 b-5 text-white h2Text">Your new travel mate</h1>
+    <h2 class="text-center text-white h3Text">Book Hotels at The Best price.</h2>
+  </div>
+  
+  <!-- search form -->
+  <form class="form-inline hotelForm" role="form" [formGroup]="form" (ngSubmit)="search()">
+
+    <mat-form-field class="example-full-width formField first">
+      <mat-icon matPrefix class="PlaceIcon material-icons-outlined ">room</mat-icon>
+      <input matInput [formControl]="getCity()" placeholder="Going To">
+      <mat-error *ngIf="getCity().invalid">{{cityErrorMsg()}}</mat-error>
+
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input matInput [formControl]="getCheckIn()"  [matDatepicker]="inPicker" placeholder="Check in">
+      <mat-error *ngIf="getCheckIn().invalid">{{CheckInErrorMsg()}}</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="inPicker"></mat-datepicker-toggle>
+      <mat-datepicker #inPicker></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-form-field class="formField">
+      <input matInput [formControl]="getCheckOut()" [matDatepicker]="toPicker" placeholder="Check out">
+      <mat-error *ngIf="getCheckOut().invalid">{{CheckOutErrorMsg()}}</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+      <mat-datepicker #toPicker></mat-datepicker>
+    </mat-form-field>
+
+    <button type="submit" class="searchBtn">
+      <mat-icon style="font-size: 30px; position: relative; top: 5px;">search</mat-icon>
+    </button>
+  </form>
+  <br><br><br><br><br><br><br><br><br>
+
+</div>

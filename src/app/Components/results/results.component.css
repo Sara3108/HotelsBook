@@ -1,0 +1,21 @@
+mat-card{
+    margin-bottom: 15px;
+    margin-left: 0;
+}
+
+.icon{
+    color: lightgray;
+    display: inline;
+    font-size: 18px;
+    margin: 2px;
+}
+.locIcon{
+    color: lightgray;
+    display: inline;
+    font-size: 18px;
+    margin: 2px;
+
+}
+.totalPrice{
+    color: lightgray;
+}

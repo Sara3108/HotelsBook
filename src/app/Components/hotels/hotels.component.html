@@ -1,0 +1,92 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div class="body" *ngIf="loading==false">
+
+<!-- location and nnmber of nights div -->
+
+  <div class=" p-4 shadow-sm bg-white">
+    <div style="width:80%" class="m-auto">
+      <i class="material-icons-outlined dateIcon">room</i>
+      <span class="locText">  Cairo</span>
+      <br>
+      <i class="material-icons-outlined dateIcon">date_range </i>
+      <span class="dateText"> {{nights}} Nights ({{checkin| date}} - {{checkout | date}})</span>
+      <button class="btn btn-outline-secondary px-5" style="float: right ; margin-right:  75px;" routerLink=''>
+        Edit
+      </button>
+    </div>
+  </div>
+  <br>
+
+ <!-- filteration div -->
+
+  <div class="row m-auto" style="width: 80%;">
+    <div class="col-md-3 border-top m-1 filter">
+
+      <input #myInput class="form-control mr-sm-2 my-3" type="search" placeholder="Search By Name" aria-label="Search"
+        [(ngModel)]="name" (input)="filterItem(myInput.value)">
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Price
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-slider></mat-slider>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <!-- results div -->
+
+    <div class="col-md-8 p-0 m-0 pl-3">
+
+      <!-- sort -->
+      <div class="dropdown">
+        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Sort by
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" (change)="selected()">
+          <a class="dropdown-item p-1 pl-3" (click)="sortPriceDes()">Price
+             <mat-icon class="sortIcon">arrow_upward</mat-icon> </a>
+          <a class="dropdown-item p-1 pl-3" (click)="sortPriceAse()">Price 
+            <mat-icon class="sortIcon">arrow_downward</mat-icon></a>
+          <a class="dropdown-item p-1 pl-3" (click)="sortNameAZ()">Name (A-Z)</a>
+          <a class="dropdown-item p-1 pl-3" (click)="sortNameZA()">Name (Z-A)</a>
+        </div>
+      </div>
+      <br>
+      <!-- list of hotels -->
+      <ng-container *ngFor="let h of filterItems">
+        <mat-card>
+          <div class="row">
+            <div class="col-md-9">
+              <div class="m-2">
+                <h4>{{h.name}}</h4>
+                <i class="material-icons-outlined locIcon">room</i>
+                <span class="cityTxt">{{h.city}}</span>
+              </div>
+              <br>
+              <div class="border-top p-3">
+                <i class="material-icons-outlined icon">local_parking</i>
+                <i class="material-icons-outlined icon">restaurant</i>
+                <i class="material-icons-outlined icon">fastfood</i>
+                <i class="material-icons-outlined icon">local_grocery_store</i>
+                <i class="material-icons-outlined icon">local_cafe</i>
+                <i class="material-icons-outlined icon">local_pizza</i>
+              </div>
+            </div>
+            <div class="col-md-3 border-left text-center">
+              <p class="mx-auto totalPrice" style="margin-top: 40px">Total Price for {{nights}} nights</p>
+              <h4 class="ym-auto">{{h.price*nights |number}}<span style="font-size: 14px"> SAR</span></h4>
+            </div>
+          </div>
+        </mat-card>
+      </ng-container>
+
+
+      <!-- ////// -->
+    </div>
+  </div>
+</div>
