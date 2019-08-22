@@ -3,8 +3,8 @@
 
   <!-- location and nnmber of nights div -->
 
-  <div class=" p-4 shadow-sm bg-white row col-md-12">
-    <div class="m-auto col-md-8">
+  <div class=" p-4 shadow-sm bg-white row col-12">
+    <div class="m-auto col-8">
       <i class="material-icons-outlined dateIcon">room</i>
       <span class="locText"> Cairo</span>
       <br>
@@ -21,7 +21,7 @@
   <div class="row m-auto col-md-8 p-2 col-sm-12">
     <!-- filteration div -->
 
-    <div class="col-md-3 border-top m-1 filter col-sm-8">
+    <div class="col-11 col-md-3 border-top m-1 filter col-sm-8">
 
       <input #myInput class="form-control mr-sm-2 my-3" type="search" placeholder="Search By Name" aria-label="Search"
         [(ngModel)]="name" (input)="filterItem(myInput.value)">
@@ -40,7 +40,7 @@
 
     <!-- results div -->
 
-    <div class="col-md-8 p-0 m-0 pl-3 col-sm-11">
+    <div class="col-11 col-md-8 p-0 m-0 pl-3 col-sm-11">
 
       <!-- sort -->
       <div class="dropdown">
@@ -62,7 +62,7 @@
       <ng-container *ngFor="let h of filterItems">
         <mat-card>
           <div class="row">
-            <div class="col-md-9 col-sm-7 ">
+            <div class="col-md-9 col-8 col-sm-7 ">
               <div class="m-2">
                 <h4>{{h.name}}</h4>
                 <i class="material-icons-outlined locIcon">room</i>
@@ -78,7 +78,7 @@
                 <i class="material-icons-outlined icon">local_pizza</i>
               </div>
             </div>
-            <div class="col-md-3 border-left text-center col-sm-3">
+            <div class="col-md-3 col-4 border-left text-center col-sm-3">
               <p class="mx-auto totalPrice" style="margin-top: 40px">Total Price for {{nights}} nights</p>
               <h4 class="ym-auto">{{h.price*nights |number}}<span style="font-size: 14px"> SAR</span></h4>
             </div>
