@@ -20,7 +20,7 @@ mat-card{
 .locIcon{
     color: lightgray;
     display: inline;
-    font-size: 20px;
+    font-size: 2rem;
     margin: 2px;
     position: relative;
     top: 5px;
@@ -29,7 +29,7 @@ mat-card{
 .cityTxt{
     color: lightgray;
     display: inline;
-    font-size: 20px;
+    font-size: 2rem;
     margin: 2px;
 }
 .totalPrice{
