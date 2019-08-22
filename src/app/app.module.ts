@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HotelsComponent } from './Components/hotels/hotels.component';
-import { ResultsComponent } from './Components/results/results.component';
-import { FilterComponent } from './Components/filter/filter.component';
 import { SearchComponent } from './Components/search/search.component';
 import { RouterModule } from '@angular/router';
 import { MatComponentsModule } from './mat-components.module';
@@ -21,8 +19,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     HotelsComponent,
-    ResultsComponent,
-    FilterComponent,
+
     SearchComponent
   ],
   imports: [

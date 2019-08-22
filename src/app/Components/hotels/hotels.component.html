@@ -61,11 +61,11 @@
       <ng-container *ngFor="let h of filterItems">
         <mat-card>
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-9 ">
               <div class="m-2">
                 <h4>{{h.name}}</h4>
                 <i class="material-icons-outlined locIcon">room</i>
-                <span class="cityTxt">{{h.city}}</span>
+                <span class="cityTxt">{{h.city}} </span>
               </div>
               <br>
               <div class="border-top p-3">
@@ -85,7 +85,9 @@
         </mat-card>
       </ng-container>
 
-
+      <div class="mx-auto my-auto text-center" style="padding:150px 0 250px 0" *ngIf="filterItems.length==0">
+        No Results Matched
+      </div>
       <!-- ////// -->
     </div>
   </div>

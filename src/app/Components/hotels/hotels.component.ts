@@ -15,7 +15,8 @@ export class HotelsComponent implements OnInit {
   filterItems: any[] = ["kkk"];
   checkin: Date;
   checkout: Date;
-  nights: number
+  nights: number;
+  availability:any[];
 
   constructor(private service: HotelsDataService, private route: ActivatedRoute) { }
 
@@ -34,18 +35,47 @@ export class HotelsComponent implements OnInit {
     this.service.getAllHotels().subscribe(response => {
       this.result = response;
       this.hotels = this.result.hotels;
-      this.assignCopy();
-      console.log(this.hotels);
-      console.log(typeof (this.hotels));
 
+      this.hotels.filter(f =>{ f.availability= f.availability.filter(
+        x => {
+          var from = x.from.split('-');
+          var to = x.to.split('-');
+
+          var fdd = parseInt(from[1]);
+          var fmm = parseInt(from[0]);
+          var fyy = parseInt(from[2]);
+
+          var tdd = parseInt(to[1]);
+          var tmm = parseInt(to[0]);
+          var tyy = parseInt(to[2]);
+
+          var convertedFrom = String(fdd + "/" + fmm + "/" + fyy);
+          var convertedTo = String(tdd + "/" + tmm + "/" + tyy);
+
+          console.log("from  " + Date.parse(convertedFrom) + "   checkin " + this.checkin.getTime());
+          console.log("to  " + Date.parse(convertedTo) + "   checkout " + this.checkout.getTime());
+
+          return (Date.parse(convertedFrom) <= this.checkin.getTime() &&
+          Date.parse(convertedFrom) <= this.checkout.getTime() &&
+            Date.parse(convertedTo) >= this.checkout.getTime() &&
+            Date.parse(convertedTo) >= this.checkin.getTime());
+        })
+        
+      });
+      console.log(this.hotels);
+
+      this.availability=this.hotels.filter(x=>x.availability.length>0);
+      this.assignCopy();
+
+      console.log(this.availability);
       this.loading = false;
 
     })
   }
-
+  
   // when nothing has typed
   assignCopy() {
-    this.filterItems = Object.assign([], this.hotels);
+    this.filterItems = Object.assign([], this.availability);
   }
 
   //when typing in textbox
@@ -53,7 +83,7 @@ export class HotelsComponent implements OnInit {
     if (!value) {
       this.assignCopy();
     }
-    this.filterItems = Object.assign([], this.hotels).filter(
+    this.filterItems = Object.assign([], this.availability).filter(
       item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
     )
   }
